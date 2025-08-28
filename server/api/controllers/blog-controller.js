@@ -1,25 +1,54 @@
-import Blog from "../models/blog-model.js"
+import blogModel from "../models/blog-model.js"
 
-export const getAllBlog = async (_,res) => {
+export const  getAllBlog= async (_, res) => {
+try {
+
+    const blog = await blogModel.find();
+    res.status(200).json(blog);
+
+}
+catch (error) {
+    console.log("Error found on blogModel",error)
+}   }
+
+export const  createNewBlog = async (req,res) => {
+ try {
+     const {title,image,description} = req.body
+     const newblog = await blogModel({
+        title,image,description
+     });
+     await newblog.save();
+     res.status(200).json(newblog);
+ }
+ catch (error) {
+    console.log(error, "Error occurs on blogModel ");
+
+}
+}
+export const updateBlog = async (req,res) => {
     try {
-        const blogs = await Blog.find()
-        res.status(200).json(blogs)
-    } catch (error) {
-        res.status(500).json({message:"Problem in get all blog"})
+        const {id} = req.params;
+        const {title,image,description} = req.body;
+        const updatedBlog = await blogModel.findByIdAndUpdate(id, {
+            title,image,description
+        }, {new:true}); 
+        res.status(200).json(updatedBlog);
+    }
+    catch (error) {
+        console.log("Error occurs while updating", error);
+    }
+
+}
+
+export const deleteBlog = async (req,res) => {
+    try {
+        const {id} = req.params;
+        await blogModel.findByIdAndDelete(id);
+        res.status(200).json("Deleted successfully");
+    }
+    catch (error) {
+        console.log("Error occurs while deleting", error);
     }
 }
 
-export const createBlog = async (req,res) => {
-    try {
-        const {title,image,description} = req.body
-        const newBlog = new Blog.create({
-          title,
-          description,
-          image  
-        })
-        await newBlog.save()
-        res.status(200).json(newBlog)
-    } catch (error) {
-        res.status(500).json({message:"Problem in create blog"})
-    }
-}
+

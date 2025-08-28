@@ -1,8 +1,5 @@
 import aboutmeModel from "../models/aboutme-model.js"
 
-
-
-
 export const  getAllAbout = async (_, res) => {
 try {
 
@@ -12,9 +9,7 @@ try {
 }
 catch (error) {
     console.log("Error found on AboutMeModel",error)
-}
-
-}
+}   }
 
 export const  createNewAbout = async (req,res) => {
  try {

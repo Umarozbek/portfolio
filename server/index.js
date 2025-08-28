@@ -3,6 +3,9 @@ import dotenv from "dotenv"
 import mongoose from "mongoose"
 import cors from "cors"
 import  aboutRoute from "./api/routes/about-route.js"
+import  blogRoute from "./api/routes/blog-route.js"
+import  contactRoute from "./api/routes/contact-route.js"
+import  portfolioRoute from "./api/routes/portfolio-route.js"
 
 // dotenv
 dotenv.config()
@@ -16,6 +19,9 @@ app.use(express.json());
 
 //routes
 app.use ("/api/about", aboutRoute);
+app.use ("/api/blog", blogRoute);
+app.use ("/api/contact", contactRoute);
+app.use ("/api/portfolio", portfolioRoute);
 
 // cors
 app.use(cors())
