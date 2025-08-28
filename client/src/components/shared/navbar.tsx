@@ -1,0 +1,20 @@
+import { Link } from "react-router-dom"
+import { ModeToggle } from "../mode-toggle"
+
+export const Navbar = () => {
+  return (
+    <div className="flex items-center justify-between mt-16 max-w-lg m-auto">
+        <h1 className="text-xl font-bold">Umar</h1>
+        <div className="flex items-center gap-4 font-semibold">
+            <Link to="/blog">
+                Blog
+            </Link>
+            <Link to="/portfolio">
+                Portfolio
+            </Link>
+          
+            <ModeToggle/>
+        </div>
+    </div>
+  )
+}
