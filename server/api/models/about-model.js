@@ -1,7 +1,7 @@
 
 import mongoose from "mongoose";
 
-const AboutMeSchema = new mongoose.Schema ({
+const AboutSchema = new mongoose.Schema ({
     title: {type: String, required: true},
     images:[{type: String}],
     description:{type:String, required:true},
@@ -9,4 +9,4 @@ const AboutMeSchema = new mongoose.Schema ({
     footer:{type:String, required:true},
 })
 
-export default mongoose.model("About", AboutMeSchema);
+export default mongoose.model("About", AboutSchema);

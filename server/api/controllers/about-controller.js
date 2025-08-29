@@ -1,27 +1,25 @@
-import aboutmeModel from "../models/aboutme-model.js"
+import About from "../models/about-model.js"
 
 export const  getAllAbout = async (_, res) => {
 try {
-
-    const aboutMe = await aboutmeModel.find();
+    const aboutMe = await About.find();
     res.status(200).json(aboutMe);
-
 }
 catch (error) {
-    console.log("Error found on AboutMeModel",error)
+    console.log("Error found on About",error)
 }   }
 
 export const  createNewAbout = async (req,res) => {
  try {
      const {title,images,description, social,footer} = req.body
-     const newaboutMe = await aboutmeModel({
+     const newaboutMe = await About({
         title,images,description,social,footer
      });
      await newaboutMe.save();
      res.status(200).json(newaboutMe);
  }
  catch (error) {
-    console.log(error, "Error occurs on AboutMeModel ");
+    console.log(error, "Error occurs on About ");
 
  }
 }
@@ -29,7 +27,7 @@ export const  createNewAbout = async (req,res) => {
 export const deleteAbout = async (req,res) => {
     try {
         const {id} = req.params;
-        await aboutmeModel.findByIdAndDelete(id);
+        await About.findByIdAndDelete(id);
         res.status(200).json("Deleted successfully");
     }
     catch (error) {
@@ -41,7 +39,7 @@ export const updateAbout = async (req,res) => {
     try {
         const {id} = req.params;
         const {title,images,description, social,footer} = req.body;
-        const updatedAbout = await aboutmeModel.findByIdAndUpdate(id, {
+        const updatedAbout = await About.findByIdAndUpdate(id, {
             title,images,description,social, footer
         }, {new:true}); 
         res.status(200).json(updatedAbout);

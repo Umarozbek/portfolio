@@ -1,27 +1,27 @@
-import portfolioModel from "../models/portfoli-model.js"
+import Portfolio from "../models/portfoli-model.js"
 
 export const  getAllPortfolio= async (_, res) => {
 try {
 
-    const portfolio = await portfolioModel.find();
+    const portfolio = await Portfolio.find();
     res.status(200).json(portfolio);
 
 }
 catch (error) {
-    console.log("Error found on portfolioModel",error)
+    console.log("Error found on Portfolio",error)
 }   }
 
 export const  createNewPortfolio = async (req,res) => {
  try {
      const {title,image,description,url} = req.body
-     const newPortfolio = await portfolioModel({
+     const newPortfolio = await Portfolio({
         title,image,description,url
      });
      await newPortfolio.save();
      res.status(200).json(newPortfolio);
  }
  catch (error) {
-    console.log(error, "Error occurs on portfolioModel ");
+    console.log(error, "Error occurs on Portfolio ");
 
 }
 }
@@ -29,7 +29,7 @@ export const updatePortfolio = async (req,res) => {
     try {
         const {id} = req.params;
         const {title,image,description, url} = req.body;
-        const updatedPortfolio = await portfolioModel.findByIdAndUpdate(id, {
+        const updatedPortfolio = await Portfolio.findByIdAndUpdate(id, {
             title,image,description, url
         }, {new:true}); 
         res.status(200).json(updatedPortfolio);
@@ -43,7 +43,7 @@ export const updatePortfolio = async (req,res) => {
 export const deletePortfolio = async (req,res) => {
     try {
         const {id} = req.params;
-        await portfolioModel.findByIdAndDelete(id);
+        await Portfolio.findByIdAndDelete(id);
         res.status(200).json("Deleted successfully");
     }
     catch (error) {
