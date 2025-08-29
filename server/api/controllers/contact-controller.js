@@ -13,9 +13,9 @@ catch (error) {
 
 export const  createNewContact = async (req,res) => {
  try {
-     const {image,backgroundColor,url} = req.body
+     const {image,backgroundColor,url,hover} = req.body
      const newcontact = await contactModel({
-        image,backgroundColor,url
+        image,backgroundColor,url,hover
      });
      await newcontact.save();
      res.status(200).json(newcontact);
@@ -29,9 +29,9 @@ export const  createNewContact = async (req,res) => {
 export const updateContact = async (req,res) => {
     try {
         const {id} = req.params;
-        const {image,backgroundColor,url} = req.body;
+        const {image,backgroundColor,url,hover} = req.body;
         const updatedContact = await contactModel.findByIdAndUpdate(id, {
-            image,backgroundColor,url
+            image,backgroundColor,url,hover
         }, {new:true}); 
         res.status(200).json(updatedContact);
     }

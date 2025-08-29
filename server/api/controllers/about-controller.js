@@ -13,9 +13,9 @@ catch (error) {
 
 export const  createNewAbout = async (req,res) => {
  try {
-     const {title,image,description} = req.body
+     const {title,images,description, social,footer} = req.body
      const newaboutMe = await aboutmeModel({
-        title,image,description
+        title,images,description,social,footer
      });
      await newaboutMe.save();
      res.status(200).json(newaboutMe);
@@ -40,9 +40,9 @@ export const deleteAbout = async (req,res) => {
 export const updateAbout = async (req,res) => {
     try {
         const {id} = req.params;
-        const {title,image,description} = req.body;
+        const {title,images,description, social,footer} = req.body;
         const updatedAbout = await aboutmeModel.findByIdAndUpdate(id, {
-            title,image,description
+            title,images,description,social, footer
         }, {new:true}); 
         res.status(200).json(updatedAbout);
     }

@@ -11,11 +11,22 @@ catch (error) {
     console.log("Error found on blogModel",error)
 }   }
 
+export const getBlogById = async (req,res) => {
+    try {
+        const {id } = req.params
+
+        const blog = await blogModel.findById(id)
+     res.status(200).json(blog);
+    } catch (error) {
+        console.log("Error found on blogModel",error)
+    }
+}
+
 export const  createNewBlog = async (req,res) => {
  try {
-     const {title,image,description} = req.body
+     const {title,image,description,date} = req.body
      const newblog = await blogModel({
-        title,image,description
+        title,image,description,date
      });
      await newblog.save();
      res.status(200).json(newblog);
@@ -28,9 +39,9 @@ export const  createNewBlog = async (req,res) => {
 export const updateBlog = async (req,res) => {
     try {
         const {id} = req.params;
-        const {title,image,description} = req.body;
+        const {title,image,description,date} = req.body;
         const updatedBlog = await blogModel.findByIdAndUpdate(id, {
-            title,image,description
+            title,image,description,date
         }, {new:true}); 
         res.status(200).json(updatedBlog);
     }

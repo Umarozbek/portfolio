@@ -14,6 +14,7 @@ const MongoDB = process.env.MongoDB || "mongodb://localhost:27017/test"
 
 //server
 const app = express();
+app.use(cors())
 app.use(express.json());
 
 
@@ -24,7 +25,6 @@ app.use ("/api/contact", contactRoute);
 app.use ("/api/portfolio", portfolioRoute);
 
 // cors
-app.use(cors())
 // server runner
 app.listen(PORT, console.log(`🚀 Server is running on ${PORT}`))
 

@@ -13,9 +13,9 @@ catch (error) {
 
 export const  createNewPortfolio = async (req,res) => {
  try {
-     const {title,image,description} = req.body
+     const {title,image,description,url} = req.body
      const newPortfolio = await portfolioModel({
-        title,image,description
+        title,image,description,url
      });
      await newPortfolio.save();
      res.status(200).json(newPortfolio);
@@ -28,9 +28,9 @@ export const  createNewPortfolio = async (req,res) => {
 export const updatePortfolio = async (req,res) => {
     try {
         const {id} = req.params;
-        const {title,image,description} = req.body;
+        const {title,image,description, url} = req.body;
         const updatedPortfolio = await portfolioModel.findByIdAndUpdate(id, {
-            title,image,description
+            title,image,description, url
         }, {new:true}); 
         res.status(200).json(updatedPortfolio);
     }
