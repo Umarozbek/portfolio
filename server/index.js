@@ -19,7 +19,7 @@ app.use(express.json());
 
 
 //routes
-app.use ("/api/about", aboutRoute);
+app.use ("/api/about", aboutRoute); 
 app.use ("/api/blog", blogRoute);
 app.use ("/api/contact", contactRoute);
 app.use ("/api/portfolio", portfolioRoute);
